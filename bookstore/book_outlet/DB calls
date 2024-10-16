@@ -1,0 +1,16 @@
+Book.objects.create(title="Cliche Title", rating=5, author="Uppin Coming", is_bestselling=True)
+
+Book.objects.all()
+Book.objects.all()[1]
+Book.objects.filter(rating=5)
+Book.objects.filter(rating__lt=3)
+Book.objects.filter(rating__gt=3, title__icontains="The")
+^ defaults to "AND"
+Book.objects.filter(Q(rating__gt=3) | Q(title__icontains="Hardly"))
+^ OR queries require from django.db.models import Q
+^^ | signifies OR
+
+query performance maxxing: cache a query
+bestsellers = Book.objects.filter(is_bestselling=True)
+amazing_bestsellers = bestsellers.filter(rating__gt=4)
+^you're caching a result, and then you can cache it again with further filters.
