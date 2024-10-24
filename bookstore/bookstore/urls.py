@@ -19,5 +19,5 @@ from django.urls import path, include, reverse
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('book_outlet/', include("book_outlet.urls"))
+    #path('book_outlet/', include("book_outlet.urls"))
 ]
